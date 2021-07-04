@@ -1,8 +1,18 @@
 
 
 <template>
-  <div class="foo">
-hkldfkjl;skljdgk
+  <div class="container-fluid">
+   <div class="gallery"> 
+    <div v-for="(artist, index) in artists" :key=index>
+    <p>{{ artist.gsx$profilepicture.$t }}</p>
+    <p>{{ artist.gsx$name.$t }}</p>
+    <p>{{ artist.gsx$about.$t }}</p>
+    <p>{{ artist.gsx$description.$t }}</p>
+    <p>{{ artist.gsx$email.$t }}</p>
+    <p>{{ artist.gsx$website.$t }}</p>
+    <p>{{ artist.gsx$images.$t }}</p>
+   </div>
+   </div>
 
  </div>
 </template>
@@ -18,7 +28,7 @@ export default {
 
  data() {
     return {
-      posts: [],
+      artists: [],
       errors: []
     }
   },
@@ -27,9 +37,9 @@ export default {
   async created() {
     try {
       const response = await axios.get(`https://spreadsheets.google.com/feeds/list/18kC36XlinBoxImrravjSceOXChOg4fOBW0_W0ECrWZw/1/public/full?alt=json`)
-      this.posts = response.data.feed.entry
-    } catch (e) {
-      this.errors.push(e)
+      this.artists = response.data.feed.entry
+    } catch (error) {
+      this.errors.push(error)
     }
   }
 }
