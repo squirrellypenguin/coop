@@ -27,7 +27,7 @@ export default {
   async created() {
     try {
       const response = await axios.get(`https://spreadsheets.google.com/feeds/list/18kC36XlinBoxImrravjSceOXChOg4fOBW0_W0ECrWZw/1/public/full?alt=json`)
-      this.posts = response.data.feed.entry.gs
+      this.posts = response.data.feed.entry
     } catch (e) {
       this.errors.push(e)
     }
